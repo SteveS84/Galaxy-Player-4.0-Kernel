@@ -20,6 +20,9 @@
 #include <plat/map-base.h>
 #include <mach/regs-clock.h>
 #include "wm8994_samsung.h"
+#ifdef CONFIG_SND_VOODOO
+#include "wm8994_voodoo.h"
+#endif
 
 /* Debug Feature */
 #define SUBJECT "wm8994_aries.c"
@@ -1852,6 +1855,9 @@ void wm8994_set_playback_receiver(struct snd_soc_codec *codec)
 	val |= (WM8994_AIF1DAC1_UNMUTE | WM8994_AIF1DAC1_MONO);
 	wm8994_write(codec, WM8994_AIF1_DAC1_FILTERS_1, val);
 
+#ifdef CONFIG_SND_VOODOO_RECORD_PRESETS
+	voodoo_hook_record_main_mic();
+#endif
 }
 void wm8994_set_headset_common(struct snd_soc_codec *codec,
 	enum wm8994_dc_servo_slots slots)
