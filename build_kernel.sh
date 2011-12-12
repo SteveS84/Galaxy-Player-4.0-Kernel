@@ -1,7 +1,7 @@
 export CROSS_COMPILE=/home/steve/compiler/bin/arm-none-linux-gnueabi-
 INITRAMFS_DIR=G1initramfs
 make steve_defconfig
-export KBUILD_BUILD_VERSION="STeVE's0.1"
+export KBUILD_BUILD_VERSION="STeVE's1.0"
 export LOCALVERSION="-G1XXKPN-CL562447"
 make -j2
 cp crypto/ansi_cprng.ko $INITRAMFS_DIR/lib/modules/
