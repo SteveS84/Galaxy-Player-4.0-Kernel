@@ -52,6 +52,7 @@ on fs
     chmod 0771 /efs
     mount rfs /dev/block/stl3 /efs nosuid nodev check=no
 
+    exec apply_disk_policy
 
 on post-fs
     mount rootfs rootfs / ro remount
@@ -75,16 +76,16 @@ on boot
 service ueventd /sbin/ueventd
     critical
 
-#service console /system/bin/sh
-#    console
+service console /sbin/busybox sh
+    console
 
-service recovery /sbin/recovery
+service recovery /sbin/recovery-loader
 
-service adbd /sbin/adbd recovery
-	disabled
+service adbd /sbin/adbd
+    enabled
 
-#on property:persist.service.adb.enable=1
-#    start adbd
+on property:persist.service.adb.enable=1
+    start adbd
 
-#on property:persist.service.adb.enable=0
-#    stop adbd
+on property:persist.service.adb.enable=0
+    stop adbd

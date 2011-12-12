@@ -1,0 +1,8 @@
+#!/sbin/busybox sh
+
+setprop persist.service.adb.enable 1
+start adbd
+stop tvout
+mount -t rootfs -o remount,rw rootfs
+ln -s /sbin/busybox /sbin/sh
+recovery

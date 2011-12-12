@@ -1,0 +1,20 @@
+#!/sbin/busybox sh
+
+echo $0 $* >> /dev/null
+
+if test "$1" = '/system' || test "$4" = '/system'; then
+	busybox mount -t rfs -o rw,check=no /dev/block/stl9 /system
+	echo busybox mount -t rfs -o rw,check=no /dev/block/stl9 /system >> dev/null
+elif test "$1" = '/data' || test "$4" = '/data'; then
+	busybox mount -t rfs -o rw,check=no /dev/block/mmcblk0p2 /data
+	echo busybox mount -t rfs -o rw,check=no /dev/block/mmcblk0p2 /data >> /dev/null	
+elif test "$1" = '/datadata' || test "$4" = '/datadata'; then
+	busybox mount -t rfs -o rw,check=no /dev/block/stl10 /datadata
+	echo busybox mount -t rfs -o rw,check=no /dev/block/stl10 /datadata >> /dev/null
+elif test "$1" = '/cache' || test "$4" = '/cache'; then
+	busybox mount -t rfs -o rw,check=no /dev/block/stl11 /cache
+	echo busybox mount -t rfs -o rw,check=no /dev/block/stl11 /cache >> /dev/null
+else
+	busybox mount $*
+	echo busybox mount $* >> /dev/null
+fi;
