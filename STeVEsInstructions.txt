@@ -1,0 +1,4 @@
+1) Edit build_kernel.sh and change CROSS_COMPILE value to your toolchain
+2) Edit build_kernel.sh and change INITRAMFS_DIR to point to your initramfs dir
+3) Edit arch/arm/steve_defconfig and change CONFIG_INITRAMFS_SOURCE to point to your initramfs dir
+4) Launch build_kernel.sh
