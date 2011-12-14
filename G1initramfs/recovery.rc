@@ -43,6 +43,7 @@ on early-fs
 
 on fs
     mount tmpfs tmpfs /tmp
+    mount ext4 /dev/block/stl9 /system
     mount rfs /dev/block/stl9 /system check=no
 
 # SEC_DMCRYPT for MC_CRYPT_ROOT before apply_disk_policy or apply_sec_devenc_init
@@ -76,7 +77,7 @@ on boot
 service ueventd /sbin/ueventd
     critical
 
-service console /sbin/busybox sh
+service console /sbin/ext/busybox sh
     console
 
 service recovery /sbin/recovery-loader
